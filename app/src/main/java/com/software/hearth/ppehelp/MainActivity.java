@@ -1,6 +1,7 @@
 package com.software.hearth.ppehelp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button wifiCheckButton;
+    Button constraintActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void InitiateLayouts(){
         wifiCheckButton = findViewById(R.id.wifiCheckButton);
+        constraintActivityButton = findViewById(R.id.constraintActivityButton);
     }
 
     private void InitiateBehaviors(){
@@ -29,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 isWifiCheck();
+            }
+        });
+
+        constraintActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToConstraintActivity();
             }
         });
     }
@@ -41,5 +51,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this,"Le Wifi est désactivé", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void navigateToConstraintActivity(){
+        Intent constraintActivityIntent = new Intent(this, ConstraintActivity.class);
+        startActivity(constraintActivityIntent);
     }
 }
