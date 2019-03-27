@@ -1,6 +1,7 @@
 package com.software.hearth.ppehelp;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.net.wifi.WifiManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +17,10 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements DateDialogFragment.DateInterface, TimeDialogFragment.TimeInterface{
 
     Button wifiCheckButton;
 
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button connectButton;
     Button clearSavedDataButton;
+
+    Button datePickerButton;
+    Button timePickerButton;
+    TextView datePickerTextView;
+    TextView timePickerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         connectButton = findViewById(R.id.connectButton);
         clearSavedDataButton = findViewById(R.id.clearSavedDataButton);
+
+        datePickerButton = findViewById(R.id.datePickerButton);
+        timePickerButton = findViewById(R.id.timePickerButton);
+        datePickerTextView = findViewById(R.id.datePickerTextView);
+        timePickerTextView = findViewById(R.id.timePickerTextView);
 
         checkIfLoginPasswordIsSaved();
     }
@@ -79,6 +92,18 @@ public class MainActivity extends AppCompatActivity {
                 clearDataInPhone();
             }
         });
+    }
+
+    public void datePickerClicked(View datePickerButton) {
+        DateDialogFragment dialogFragment = new DateDialogFragment();
+        dialogFragment.setDateInterface(this);
+        dialogFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void timePickerClicked(View timePickerButton) {
+        TimeDialogFragment dialogFragment = new TimeDialogFragment();
+        dialogFragment.setTimeInterface(this);
+        dialogFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
     //Voir le AndroidManifest pour les permissions
@@ -132,5 +157,17 @@ public class MainActivity extends AppCompatActivity {
             passwordEditText.setVisibility(View.VISIBLE);
             clearSavedDataButton.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void getDateFromDateFragment(int year, int month, int day) {
+        datePickerTextView.setText(String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year));
+        datePickerTextView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getTimeFromTimeFragment(int hour, int minute) {
+        timePickerTextView.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
+        timePickerTextView.setVisibility(View.VISIBLE);
     }
 }
