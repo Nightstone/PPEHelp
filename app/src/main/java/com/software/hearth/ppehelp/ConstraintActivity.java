@@ -72,6 +72,11 @@ public class ConstraintActivity extends AppCompatActivity implements ChooseDialo
         startActivityForResult(intent, 1);
     }
 
+    public void onMapButtonClicked(View view) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onChooseDone(String choose) {
         binding.chooseModalTextView.setText(getString(R.string.chooseName, choose));
@@ -85,6 +90,8 @@ public class ConstraintActivity extends AppCompatActivity implements ChooseDialo
             binding.chooseModalActivityTextView.setText(data.getExtras().getString("message_return"));
         }
     }
+
+
 }
 
 
