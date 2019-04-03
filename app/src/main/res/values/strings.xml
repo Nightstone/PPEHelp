@@ -3,4 +3,9 @@
 
     <string name="titlePost">Title : %1$s</string>
     <string name="idPost">ID : %1$d</string>
+
+    <string name="chooseName">Prenom : %1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

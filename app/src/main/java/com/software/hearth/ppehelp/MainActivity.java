@@ -94,7 +94,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
         });
     }
 
-    public void datePickerClicked(View datePickerButton) {
+
+    public void datePickerClicked(View v) {
         DateDialogFragment dialogFragment = new DateDialogFragment();
         dialogFragment.setDateInterface(this);
         dialogFragment.show(getSupportFragmentManager(), "datePicker");
@@ -110,7 +111,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
     private void isWifiCheck(){
         WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         if (wifiManager.isWifiEnabled()) {
-            Toast.makeText(this,"Le Wifi est activé", Toast.LENGTH_LONG).show();
+            Toast toast =  Toast.makeText(this,"Le Wifi est activé", Toast.LENGTH_LONG);
+            toast.show();
         } else {
             Toast.makeText(this,"Le Wifi est désactivé", Toast.LENGTH_LONG).show();
         }
@@ -123,7 +125,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
 
     private void saveDataInPhone(){
         if (loginEditText.getText().length() != 0 && passwordEditText.getText().length() != 0 ) {
-            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LoginPassword", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LoginPassword",
+                    Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("Login",loginEditText.getText().toString());
             editor.putString("Password", passwordEditText.getText().toString());
@@ -134,7 +137,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
     }
 
     private void clearDataInPhone(){
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LoginPassword", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LoginPassword",
+                Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         Log.d("JLE", sharedPreferences.getString("Login",""));
@@ -148,7 +152,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
     }
 
     private void checkIfLoginPasswordIsSaved() {
-        if (getApplicationContext().getSharedPreferences("LoginPassword", Context.MODE_PRIVATE).getString("Login", "") != "") {
+        if (getApplicationContext().getSharedPreferences("LoginPassword", Context.MODE_PRIVATE)
+                .getString("Login", "") != "") {
             loginEditText.setVisibility(View.GONE);
             passwordEditText.setVisibility(View.GONE);
             clearSavedDataButton.setVisibility(View.VISIBLE);
