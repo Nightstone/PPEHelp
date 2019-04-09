@@ -26,6 +26,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
 
     Button constraintActivityButton;
 
+    Button fragmentActivityButton;
+
     EditText loginEditText;
     EditText passwordEditText;
     Button connectButton;
@@ -50,6 +52,8 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
         wifiCheckButton = findViewById(R.id.wifiCheckButton);
 
         constraintActivityButton = findViewById(R.id.constraintActivityButton);
+
+        fragmentActivityButton = findViewById(R.id.fragmentActivityButton);
 
         loginEditText = findViewById(R.id.loginEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -92,6 +96,11 @@ public class MainActivity extends FragmentActivity implements DateDialogFragment
                 clearDataInPhone();
             }
         });
+    }
+
+    public void setFragmentActivityButton(View v) {
+        Intent intent = new Intent(this, CustomFragmentActivity.class);
+        startActivity(intent);
     }
 
 
