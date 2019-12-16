@@ -1,16 +1,13 @@
 package com.software.hearth.ppehelp;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.software.hearth.ppehelp.databinding.ActivityChooseNameBinding;
-
-import java.io.Serializable;
 
 public class ChooseNameActivity extends AppCompatActivity implements ChooseNameListAdapter.OnChooseNameListener {
 

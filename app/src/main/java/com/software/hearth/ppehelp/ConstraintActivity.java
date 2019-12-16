@@ -1,18 +1,15 @@
 package com.software.hearth.ppehelp;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.software.hearth.ppehelp.databinding.ActivityConstraintBinding;
 
-import java.io.Serializable;
 import java.util.List;
 
 import retrofit2.Call;
